@@ -1,6 +1,6 @@
 {% set name = "optional-lite" %}
 {% set version = "3.5.0" %}
-
+{% set sha256 = "6077cee87e2812afd05a273645051e0b55397a25c220295ddc1d6f49d0cf5cc8" %}
 
 package:
   name: {{ name|lower }}
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://github.com/martinmoene/optional-lite/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 6077cee87e2812afd05a273645051e0b55397a25c220295ddc1d6f49d0cf5cc8
+  sha256: {{ sha256 }}
 
 build:
   number: 0
@@ -19,8 +19,6 @@ requirements:
     - {{ compiler('cxx') }}
     - cmake
     - ninja
-  run:
-    - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default("10.9") }}  # [osx and x86_64]
 
 test:
   commands:
@@ -29,9 +27,17 @@ test:
 
 about:
   home: https://github.com/martinmoene/optional-lite
-  summary: A C++17-like optional, a nullable object for C++98, C++11 and later in a single-file header-only library
-  license: BSL-1.0
   license_file: LICENSE.txt
+  license_family: Other
+  license: BSL-1.0
+  summary: A C++17-like optional, a nullable object for C++98, C++11 and later in a single-file header-only library
+  description: |
+    optional lite is a single-file header-only library to represent optional (nullable) objects and pass them by value.
+    The library aims to provide a C++17-like optional for use with C++98 and later. If available, std::optional is used.
+    There's also a simpler version, optional bare. Unlike optional lite, optional bare is limited to default-constructible
+    and copyable types.
+  dev_url: https://github.com/martinmoene/optional-lite
+  doc_url: https://github.com/martinmoene/optional-lite/blob/master/README.md
 
 extra:
   recipe-maintainers:
